@@ -1,0 +1,30 @@
+class CommentsController < ApplicationController
+
+  get '/posts/:post_id/comments/new/:id' do
+    @post = Post.find(params[:post_id])
+    @parent = Comment.find(params[:id])
+    @comment_id = @parent.id
+    erb :'comments/new.html'
+  end
+  
+  post '/posts/:post_id/comments/new/:id' do
+    @comment = Comment.new(params[:description])
+    @comment.parent_id = params[:post_id]
+    @comment.author = params[:author]
+    
+  end
+
+  get '/posts/:post_id/comments/:id/edit' do
+  end
+
+  patch '/posts/:post_id/comments/:id' do
+  end
+
+  delete '/posts/post_id/comments/:id' do
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @comment.replies.destroy_all
+    @comment.delete
+    redirect "/posts/#{post_id}"
+  end
+end

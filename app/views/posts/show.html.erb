@@ -1,0 +1,28 @@
+<h1>
+  <%= @post.title %>
+</h1>
+<b> By:
+  <%= @post.author %>
+</b>
+<p>
+  <%= @post.description %>
+</p>
+<a href="/posts/<%=@post.id%>/edit" class="btn btn-xs btn-warning" role="button"> Edit Post </a>
+<form action="/posts/<%=@post.id%>" method="post">
+  <input type="hidden" name="_method" value="delete"/>
+  <input type="submit" class="btn btn-xs btn-danger" value="Delete Post">
+</form>
+
+<br>
+<h2> Comments </h2>
+<% if @post.comments.empty? %>
+  <div class="container">
+    <h5> Be the first to add a comment! </h5>
+  </div>
+<% else %>
+  <% @post.comments.each do |comment| %>
+    <%= erb :'/posts/_comment.html', :locals => { :comment => comment } unless comment.comment_id %>
+  <% end %>
+<% end %>
+<!--- new comment path -->
+<a class="btn btn-success" href="/posts/<%= @post.id %>/comments/new"> Add comment </a>

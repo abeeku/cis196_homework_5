@@ -1,0 +1,26 @@
+<form action="/posts" method="post" class="form-inline well">
+  <h3>Create a new Post</h3>
+
+  <% if @post && @post.errors %>
+    <div class="alert alert-error">
+      <div>Submission Error</div>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label>Title</label> <br>
+    <input type="text" name="title" placeholder="Title" > <br>
+    <label>Author</label> <br>
+    <input type="text" name="author" placeholder="Author"> <br>
+    <label>Text</label><br>
+    <textarea rows="10" cols="50" name="desc" placeholder="Text"></textarea>
+  </div>
+  <button type="submit" name="submit" class="btn primary">Submit</button>
+</form>

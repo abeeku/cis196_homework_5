@@ -1,0 +1,15 @@
+<div class="body">
+  <h2>Editing <%= @post.title %></h2>
+  <form class="form-inline well" action="/posts/<%= @post.id %>" method="post">
+    <input type="hidden" name="_method" value="patch" />
+    <p>
+      Title:
+      <input type="text" name="title" value="<%= @post.title %>" />
+    </p>
+    <p>
+      Description:<br>
+      <textarea name="description" cols="50" rows="10" ><%= @post.description %></textarea>
+    </p>
+    <input class="btn primary" type="submit" value="Update Post" />
+  </form>
+</div>

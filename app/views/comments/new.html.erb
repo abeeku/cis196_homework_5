@@ -1,0 +1,35 @@
+<form class="form-inline well" action="/posts/<%= @post.id %>/comments" method="post">
+  <% if @comment && @comment.errors %>
+    <div class="alert alert-error">
+      <div>Submission Error</div>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1> Replying to </h1>
+  <% if @parent %>
+  <h2>
+    " <%= @parent.description %> "
+  </h2>
+    By: <%= @parent.author %>
+  <% else %>
+    <h2> " <%= @post.description %> " </h2>
+    By: <%= @post.author %>
+  <% end %>
+  <h3>Add a comment</h3>
+
+  <div class="field">
+    <input type="hidden" name="comment_id" value=<%= @comment_id %>>
+    <label>Author</label> <br>
+    <input type="text" name="author" placeholder="Author"> <br>
+    <label>Content</label> <br>
+    <textarea rows="10" cols="50" name="desc" placeholder="Text"></textarea>
+  </div>
+  <button class="btn primary" type="submit" name="submit">Submit</button>
+</form>

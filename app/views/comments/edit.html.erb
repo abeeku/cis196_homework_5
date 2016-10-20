@@ -1,0 +1,12 @@
+<div class="body">
+  <h2>Editing <%= @comment_to_edit.description %></h2>
+  By: <%= @comment_to_edit.author %>
+  <form class="form-inline well" action="/posts/<%= @post.id %>/comments/<%=@comment_to_edit.id%>" method="post">
+    <input type="hidden" name="_method" value="patch" />
+    <p>
+      Description:<br>
+      <textarea name="desc" cols="50" rows="10" ><%= @comment_to_edit.description %></textarea>
+    </p>
+    <input class="btn primary" type="submit" value="Update Comment" />
+  </form>
+</div>

@@ -1,0 +1,17 @@
+<div class="comment">
+  <ul>
+    <li> <%= comment.description %> <br>
+    Added by <strong> <%= comment.author %> </strong> <br>
+    <a class="btn btn-xs btn-primary" href="/posts/<%= @post.id %>/comments/new/<%= comment.id %>"> Add reply</a> <br>
+    <a class="btn btn-xs btn-warning" href="/posts/<%=@post.id%>/comments/<%=comment.id%>/edit"> Edit Comment </a>
+    <form action="/posts/<%=@post.id%>/comments/<%=comment.id%>" method="post">
+      <input type="hidden" name="_method" value="delete"/>
+      <input type="submit" value="Delete Comment" class="btn btn-xs btn-danger">
+    </form>
+
+    </li>
+    <% comment.replies.each do |reply| %>
+      <%= erb :'/posts/_comment.html', :locals => { :comment => reply } %>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,23 @@
+<h1>
+  <%= @section %> Posts 
+</h1>
+<% if @posts.size == 0 %>
+  <p> No posts yet! </p>
+<% else %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <a href="/posts/<%=post.id%>"> <%= post.title %> </a> <br>
+        By: <%= post.author %>
+      </li>
+
+      <ul>
+        <li> 
+          <%= post.comments.size %> comments
+        </li>
+      </ul>
+    <% end %>
+  </ul>
+<% end %>
+
+<a class="btn btn-success" href="/posts/new"> Create new post </a>
